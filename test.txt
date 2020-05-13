@@ -1,0 +1,11 @@
+When an interrupt occurs, the Global Interrupt Enable I-bit is cleared and all interrupts
+are disabled. The user software can write logic one to the I-bit to enable nested interrupts. All enabled interrupts can then interrupt the current interrupt routine. The I-bit is
+automatically set when a Return from Interrupt instruction  RETI  is executed.s
+There are basically two types of interrupts. The first type is triggered by an event that
+sets the interrupt flag. For these interrupts, the Program Counter is vectored to the
+actual Interrupt Vector in order to execute the interrupt handling routine, and hardware
+clears the corresponding interrupt flag. Interrupt flags can also be cleared by writing a
+logic one to the flag bit position(s) to be cleared. If an interrupt condition occurs while the
+corresponding interrupt enable bit is cleared, the interrupt flag will be set and remembered until the interrupt is enabled, or the flag is cleared by software. Similarly, if one or
+more interrupt conditions occur while the Global Interrupt Enable bit is cleared, the corresponding interrupt flag(s) will be set and remembered until the global interrupt enable
+bit is set, and will then be executed by order of priority. 
